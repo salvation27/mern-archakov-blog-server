@@ -5,12 +5,16 @@ import {postCreateValidation} from './validations/post.js'
 import multer from 'multer'
 import {handleValidationErrors ,checkAuth} from './utils/index.js'
 import cors from 'cors'
+import dotenv from "dotenv";
+
+
 
 import  './connectDB.js'
 
 
 const app = express();
 
+dotenv.config();
 const storage = multer.diskStorage({
   destination: (_, __, cb) => {
     cb(null, "uploads");
@@ -49,7 +53,7 @@ app.patch("/posts/:id", checkAuth,postCreateValidation, handleValidationErrors, 
 
 
 
-app.listen(1234, (err) => {
+app.listen(process.env.PORT || 1234, (err) => {
   if (err) {
     return console.log(err);
   }

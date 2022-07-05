@@ -1,9 +1,10 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 mongoose
-  .connect(
-    "mongodb+srv://molotok27:molotok27@cluster0.qhaihuk.mongodb.net/blog?retryWrites=true&w=majority"
-  )
+  .connect(process.env.MONGO_DB)
   .then(() => {
     console.log("соединилось с монго");
   })
